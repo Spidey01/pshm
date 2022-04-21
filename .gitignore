@@ -1,0 +1,8 @@
+# Good choice for cmake build.
+/build*/*
+# Editor Swap files and stuff.
+.*.sw?
+*#*
+*~
+# VS Code stuff.
+/.vscode
