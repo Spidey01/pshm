@@ -6,6 +6,8 @@ project(pshm
 
 option(BUILD_SHARED_LIBS "Build libs as shared." ON)
 option(BUILD_TESTING "Enable CTest support." ON)
+option(PSHM_TRACING "Enable tracing to std::cout" ON)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

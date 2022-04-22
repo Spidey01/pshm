@@ -1,0 +1,41 @@
+#ifndef PSHM_CONFIG__HPP
+#define PSHM_CONFIG__HPP
+
+/* This file is generated from from cmake using configure_file(). */
+
+#cmakedefine PSHM_VERSION_HAS_MAJOR
+
+#ifdef PSHM_VERSION_HAS_MAJOR
+#define PSHM_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#else
+#define PSHM_VERSION_MAJOR 0
+#endif
+
+#cmakedefine PSHM_VERSION_HAS_MINOR
+
+#ifdef PSHM_VERSION_HAS_MINOR
+#define PSHM_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#else
+#define PSHM_VERSION_MINOR 0
+#endif
+
+#cmakedefine PSHM_VERSION_HAS_PATCH
+
+#ifdef PSHM_VERSION_HAS_PATCH
+#define PSHM_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#else
+#define PSHM_VERSION_PATCH 0
+#endif
+
+#define PSHM_VERSION_STRING "@PROJECT_VERSION@"
+#define PSHM_VERSION_CODE ( (PSHM_VERSION_MAJOR * 10000) + (PSHM_VERSION_MINOR * 100) + PSHM_VERSION_PATCH )
+
+/**
+ * @brief Whether or not PSHM_TRACING was enabled in the cmake build.
+ *
+ * When this is enabled information for memory tracing will be compiled in and
+ * spewed to std::cout. Best to only enable this when developing pshm.
+ */
+#cmakedefine01 PSHM_TRACING
+
+#endif // PSHM_CONFIG__HPP
