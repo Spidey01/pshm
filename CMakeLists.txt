@@ -6,6 +6,7 @@ project(pshm
 
 option(BUILD_SHARED_LIBS "Build libs as shared." ON)
 option(BUILD_TESTING "Enable CTest support." ON)
+option(BUILD_DOCS "Enable Doxygen support." ON)
 option(PSHM_TRACING "Enable tracing to std::cout" ON)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -23,6 +24,9 @@ install(FILES
     INSTALL.md
     DESTINATION ${CMAKE_INSTALL_DOCDIR})
 
+if (BUILD_DOCS)
+    include(pshm_doxygen)
+endif (BUILD_DOCS)
 
 add_subdirectory(include)
 add_subdirectory(lib)
