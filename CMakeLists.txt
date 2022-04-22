@@ -22,3 +22,11 @@ install(FILES
     NOTICE
     INSTALL.md
     DESTINATION ${CMAKE_INSTALL_DOCDIR})
+
+
+add_subdirectory(include)
+add_subdirectory(lib)
+if (BUILD_TESTING)
+    include(CTest)
+    add_subdirectory(testing)
+endif (BUILD_TESTING)

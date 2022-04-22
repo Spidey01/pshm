@@ -21,6 +21,7 @@ install(FILES
     pshm/allocation_trace.hpp
     pshm/flags.hpp
     pshm/shm_object.hpp
+    pshm/shm_ptr.hpp
     pshm/stdcpp.hpp
     pshm/tracing.hpp
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/pshm)
