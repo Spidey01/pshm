@@ -20,6 +20,7 @@ install(FILES
     ${CONFIG_HPP}
     pshm/allocation_trace.hpp
     pshm/flags.hpp
+    pshm/posix_shm_object.hpp
     pshm/shm_object.hpp
     pshm/shm_ptr.hpp
     pshm/stdcpp.hpp

@@ -7,6 +7,11 @@
 #include <pshm/shm_object.hpp>
 #include <pshm/stdcpp.hpp>
 
+#if defined(__unix__)
+#include <pshm/posix_shm_object.hpp>
+#elif defined(_WIN32)
+// TODO
+#endif
 
 namespace pshm
 {
