@@ -1,0 +1,27 @@
+# based on https://gitlab.kitware.com/cmake/community/-/wikis/doc/tutorials/How-to-create-a-ProjectConfig.cmake-file
+
+@PACKAGE_INIT@
+
+# - Config file for the pshm package
+# It defines the following variables
+#  pshm_INCLUDE_DIRS - include directories for pshm
+#  pshm_LIBRARIES    - libraries to link against
+
+# Compute paths
+get_filename_component(pshm_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(pshm_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET pshm AND NOT pshm_BINARY_DIR)
+    include("${pshm_CMAKE_DIR}/pshmTargets.cmake")
+endif()
+
+# These are IMPORTED targets created by pshmTargets.cmake
+set(pshm_LIBRARIES pshm)
+
+# Dependencies
+if (UNIX)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
+    target_link_libraries(pshm rt Threads::Threads)
+endif (UNIX)

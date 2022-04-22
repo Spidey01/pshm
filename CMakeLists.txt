@@ -34,3 +34,6 @@ if (BUILD_TESTING)
     include(CTest)
     add_subdirectory(testing)
 endif (BUILD_TESTING)
+
+include(pshm_cpack)
+include(CPack)

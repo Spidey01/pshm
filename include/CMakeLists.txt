@@ -18,7 +18,7 @@ configure_file(pshm/config.hpp.in ${CONFIG_HPP} @ONLY)
 
 install(FILES
     ${CONFIG_HPP}
-    pshm/allocation_trace.hpp
+    pshm/allocation_tracer.hpp
     pshm/flags.hpp
     pshm/posix_shm_object.hpp
     pshm/shm_object.hpp
