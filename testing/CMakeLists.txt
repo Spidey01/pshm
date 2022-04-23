@@ -10,6 +10,18 @@ add_executable(shm_object_create_excl shm_object_create_excl.cpp main.cpp)
 target_link_libraries(shm_object_create_excl pshm)
 add_test(test_shm_object_create_excl shm_object_create_excl)
 
+add_executable(shm_object_create_ro shm_object_create_ro.cpp main.cpp)
+target_link_libraries(shm_object_create_ro pshm)
+add_test(test_shm_object_create_ro shm_object_create_ro)
+
+add_executable(shm_object_create_rw shm_object_create_rw.cpp main.cpp)
+target_link_libraries(shm_object_create_rw pshm)
+add_test(test_shm_object_create_rw shm_object_create_rw)
+
+add_executable(shm_object_fields shm_object_fields.cpp main.cpp)
+target_link_libraries(shm_object_fields pshm)
+add_test(test_shm_object_fields shm_object_fields)
+
 add_executable(shm_ptr_default_constructor shm_ptr_default_constructor.cpp main.cpp)
 target_link_libraries(shm_ptr_default_constructor pshm)
 add_test(test_shm_ptr_default_constructor shm_ptr_default_constructor)
