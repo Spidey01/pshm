@@ -7,12 +7,18 @@
 
 #include <pshm/stdcpp.hpp>
 
+#if __unix__
+#include <pshm/posix_shm_object.hpp>
+#define SHM_OBJECT_TEST_USES_POSIX_SHM_OBJECT 1
+#endif
+
 #include <algorithm>
 #include <array>
 #include <climits>
 #include <cmath>
 #include <cstring>
 #include <limits>
+#include <memory>
 #include <vector>
 
 using std::cout;
@@ -25,11 +31,25 @@ using std::string;
 using std::to_string;
 using std::vector;
 
+using shm_object_unique_ptr = std::unique_ptr<pshm::shm_object>;
+
+template <class... Args>
+shm_object_unique_ptr make_shm_object_unique_ptr(Args&&... args)
+{
+#if SHM_OBJECT_TEST_USES_POSIX_SHM_OBJECT
+    using shm_object_impl = pshm::posix_shm_object;
+#else
+#error shm_object not implemented for this platform
+#endif
+
+    return std::make_unique<shm_object_impl>(std::forward<Args>(args)...);
+}
+
 /** Called from the main() in main.cpp.
- * 
+ *
  * To create a new test case make a new file for the test case and link it and
  * main.cpp to provide a standard main() for tests.
- * 
+ *
  * @param name the test program name, e.g., argv[0] stripped to the base file name.
  * @throws TestFailure on test failure.
  */
@@ -37,8 +57,8 @@ void run_test(const string& name);
 
 /**
  * @brief Simple structure for testing.
- * 
- * For stuffing in shared memory, effectively a 
+ *
+ * For stuffing in shared memory, effectively a
  */
 class TestStruct
 {
@@ -55,10 +75,10 @@ static_assert(std::is_trivial<TestStruct>::value, "Structure for shared memory n
 
 /**
  * @brief Return the basename of the path.
- * 
+ *
  * Similar to POSIX basename() and std::filesystem::path::filename() but without
  * the respective dependencies.
- * 
+ *
  * @param path to basename.
  * @returns the basename.
  */
@@ -82,7 +102,7 @@ inline string basename_for_testing(const string& path)
 
 /**
  * @brief Decent approximation for floats.
- * 
+ *
  * @param a first real number to compare.
  * @param b second real number to compare.
  * @param epsilon the approximation error.
@@ -95,9 +115,9 @@ inline bool approximatelyEqual(float a, float b, float epsilon)
 
 /**
  * @brief Assert that two test structures are equal.
- * 
+ *
  * Unlike an operator== this will throw an exception denoting which field doesn't match.
- * 
+ *
  * @param name passed to TestFailure on failure.
  * @param lhs left hand side.
  * @param rhs right hand side.
