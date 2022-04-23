@@ -102,6 +102,27 @@ namespace pshm
         }
     }
 
+    posix_shm_object::posix_shm_object(posix_shm_object&& r) noexcept
+        : shm_object(std::move(r))
+        , mPointer(std::move(r.mPointer))
+        , mFile(std::move(r.mFile))
+    {
+        r.mPointer = nullptr;
+        r.mFile = -1;
+    }
+
+    posix_shm_object& posix_shm_object::operator=(posix_shm_object&& r) noexcept
+    {
+        if (this != &r) {
+            shm_object::operator=(std::move(r));
+            mPointer = std::move(r.mPointer);
+            mFile = std::move(r.mFile);
+            r.mPointer = nullptr;
+            r.mFile = -1;
+        }
+        return *this;
+    }
+
     void* posix_shm_object::get() const noexcept
     {
         return mPointer;

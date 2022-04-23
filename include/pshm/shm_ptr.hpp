@@ -36,6 +36,9 @@ namespace pshm
         using offset_type = shm_object::offset_type;
         using size_type = shm_object::size_type;
         using string_type = shm_object::string_type;
+#if defined(__unix__)
+        using shm_object_type = pshm::posix_shm_object;
+#endif
 
         /**
          * @brief Create a shared memory object that refers nothing.

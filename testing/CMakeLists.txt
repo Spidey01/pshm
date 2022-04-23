@@ -18,6 +18,14 @@ add_executable(shm_object_create_rw shm_object_create_rw.cpp main.cpp)
 target_link_libraries(shm_object_create_rw pshm)
 add_test(test_shm_object_create_rw shm_object_create_rw)
 
+add_executable(shm_object_move_constructor shm_object_move_constructor.cpp main.cpp)
+target_link_libraries(shm_object_move_constructor pshm)
+add_test(test_shm_object_move_constructor shm_object_move_constructor)
+
+add_executable(shm_object_move_assignment shm_object_move_assignment.cpp main.cpp)
+target_link_libraries(shm_object_move_assignment pshm)
+add_test(test_shm_object_move_assignment shm_object_move_assignment)
+
 add_executable(shm_object_fields shm_object_fields.cpp main.cpp)
 target_link_libraries(shm_object_fields pshm)
 add_test(test_shm_object_fields shm_object_fields)

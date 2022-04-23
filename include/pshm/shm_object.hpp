@@ -43,6 +43,59 @@ namespace pshm
         virtual ~shm_object();
 
         /**
+         * @brief shm_object is not copyable by value.
+         * 
+         * While the base class interface has easily copied fields: the desired
+         * semantics for shm_objects implementations are non-copyable.
+         * 
+         * @param o if you need a real copy: use pointers.
+         */
+        shm_object(const shm_object& o) = delete;
+
+        /**
+         * @brief shm_object is not copyable by value.
+         * 
+         * While the base class interface has easily copied fields: the desired
+         * semantics for shm_objects implementations are non-copyable.
+         * 
+         * @param o if you need a real copy: use pointers.
+         */
+        shm_object& operator=(const shm_object& o) noexcept = delete;
+
+        /**
+         * @brief Move construction.
+         * 
+         * Implementations of shm_object are expected to provide a move
+         * constructor that leaves the resource as nullptr or to delete their
+         * move constructor.
+         * 
+         * Currently move construction does not erase the shm_object fields
+         * (name(), etc) because shm_object() has no default constructor. This
+         * may change in the future.
+         * 
+         * @param r the resource to cannibalize. Implementations should transfer
+         * the resource in the same spirit as a std::unique_ptr.
+         */
+        shm_object(shm_object&& r) = default;
+
+
+        /**
+         * @brief Move assignment.
+         * 
+         * Implementations of shm_object are expected to provide a move
+         * constructor that leaves the resource as nullptr or to delete their
+         * move constructor.
+         * 
+         * Currently move assignment does not erase the shm_object fields
+         * (name(), etc) because shm_object() has no default constructor. This
+         * may change in the future.
+         * 
+         * @param r the resource to cannibalize. Implementations should transfer
+         * the resource in the same spirit as a std::unique_ptr.
+         */
+        shm_object& operator=(shm_object&& r) noexcept = default;
+
+        /**
          * @brief Get the name of this object.
          *
          * @returns the shared memory object name.

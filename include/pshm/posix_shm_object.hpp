@@ -41,6 +41,20 @@ namespace pshm
          */
         virtual ~posix_shm_object();
 
+        /**
+         * @brief Move Constructor.
+         * 
+         * @param r the resource to transfer.
+         */
+        posix_shm_object(posix_shm_object&& r) noexcept;
+
+        /**
+         * @brief Move assignment.
+         * 
+         * @param r the resource to transfer.
+         */
+        posix_shm_object& operator=(posix_shm_object&& r) noexcept;
+
         /** @returns the underlaying pointer.
          */
         void* get() const noexcept override;
