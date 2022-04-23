@@ -13,6 +13,11 @@ class TestFailure : public std::exception
     std::string msg;
 
   public:
+    TestFailure(const std::string& name, const std::string& message, std::exception& related)
+        : msg(name + ": " + message + ": " + std::string(related.what()))
+    {
+    }
+
     TestFailure(const std::string& name, const std::string& message)
         : msg(name + ": " + message)
     {
