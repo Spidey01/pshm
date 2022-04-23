@@ -4,14 +4,8 @@
 // Copyright 2022-Current, Terry M. Poulin.
 
 #include <pshm/config.hpp>
-#include <pshm/shm_object.hpp>
+#include <pshm/shm_object_native.hpp>
 #include <pshm/stdcpp.hpp>
-
-#if defined(__unix__)
-#include <pshm/posix_shm_object.hpp>
-#elif defined(_WIN32)
-// TODO
-#endif
 
 namespace pshm
 {
@@ -36,9 +30,7 @@ namespace pshm
         using offset_type = shm_object::offset_type;
         using size_type = shm_object::size_type;
         using string_type = shm_object::string_type;
-#if defined(__unix__)
-        using shm_object_type = pshm::posix_shm_object;
-#endif
+        using shm_object_type = pshm::shm_object_native;
 
         /**
          * @brief Create a shared memory object that refers nothing.

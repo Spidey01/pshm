@@ -65,12 +65,6 @@ namespace pshm
         int mFile;
     };
 
-    template <class... Args>
-    shm_object* make_shm_object(Args&&... args)
-    {
-        return new posix_shm_object(std::forward<Args>(args)...);
-    }
-
 } // namespace pshm
 
 #endif // PSHM_POSIX_SHM_OBJECT__HPP

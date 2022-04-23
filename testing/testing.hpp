@@ -6,11 +6,7 @@
 #include "./TestFailure.hpp"
 
 #include <pshm/stdcpp.hpp>
-
-#if __unix__
-#include <pshm/posix_shm_object.hpp>
-#define SHM_OBJECT_TEST_USES_POSIX_SHM_OBJECT 1
-#endif
+#include <pshm/shm_object_native.hpp>
 
 #include <algorithm>
 #include <array>
@@ -36,13 +32,7 @@ using shm_object_unique_ptr = std::unique_ptr<pshm::shm_object>;
 template <class... Args>
 shm_object_unique_ptr make_shm_object_unique_ptr(Args&&... args)
 {
-#if SHM_OBJECT_TEST_USES_POSIX_SHM_OBJECT
-    using shm_object_impl = pshm::posix_shm_object;
-#else
-#error shm_object not implemented for this platform
-#endif
-
-    return std::make_unique<shm_object_impl>(std::forward<Args>(args)...);
+    return std::make_unique<pshm::shm_object_native>(std::forward<Args>(args)...);
 }
 
 /** Called from the main() in main.cpp.
