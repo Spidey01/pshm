@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.18..3.23 FATAL_ERROR)
 
 add_library(pshm
+    flags.cpp
     shm_object.cpp)
 
 # uname -s, or "Windows"
