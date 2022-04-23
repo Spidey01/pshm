@@ -22,6 +22,7 @@ install(FILES
     pshm/flags.hpp
     pshm/posix_shm_object.hpp
     pshm/shm_object.hpp
+    pshm/shm_object_native.hpp
     pshm/shm_ptr.hpp
     pshm/stdcpp.hpp
     pshm/tracing.hpp
