@@ -22,6 +22,10 @@ add_executable(shm_object_fields shm_object_fields.cpp main.cpp)
 target_link_libraries(shm_object_fields pshm)
 add_test(test_shm_object_fields shm_object_fields)
 
+add_executable(shm_object_get shm_object_get.cpp main.cpp)
+target_link_libraries(shm_object_get pshm)
+add_test(test_shm_object_get shm_object_get)
+
 add_executable(shm_ptr_default_constructor shm_ptr_default_constructor.cpp main.cpp)
 target_link_libraries(shm_ptr_default_constructor pshm)
 add_test(test_shm_ptr_default_constructor shm_ptr_default_constructor)
