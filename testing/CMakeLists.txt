@@ -5,6 +5,11 @@ cmake_minimum_required(VERSION 3.18..3.23 FATAL_ERROR)
 # add_executable(compiler_features compiler_features.cpp)
 # add_test(test_compiler_features compiler_features)
 
+
+add_executable(shm_object_create_excl shm_object_create_excl.cpp main.cpp)
+target_link_libraries(shm_object_create_excl pshm)
+add_test(test_shm_object_create_excl shm_object_create_excl)
+
 add_executable(shm_ptr_default_constructor shm_ptr_default_constructor.cpp main.cpp)
 target_link_libraries(shm_ptr_default_constructor pshm)
 add_test(test_shm_ptr_default_constructor shm_ptr_default_constructor)
