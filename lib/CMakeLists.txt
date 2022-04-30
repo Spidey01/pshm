@@ -20,6 +20,10 @@ target_include_directories(pshm PUBLIC
     $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 
+include(GenerateExportHeader)
+generate_export_header(pshm
+    EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/pshm/pshm_export.hpp)
+
 install(TARGETS pshm
     EXPORT pshmTargets
     INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"

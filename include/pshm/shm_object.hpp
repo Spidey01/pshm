@@ -5,6 +5,7 @@
 
 #include <pshm/config.hpp>
 #include <pshm/flags.hpp>
+#include <pshm/pshm_export.hpp>
 #include <pshm/stdcpp.hpp>
 #include <pshm/tracing.hpp>
 
@@ -14,7 +15,7 @@ namespace pshm
      * @brief Represents an object in shared memory.
      *
      */
-    class shm_object
+    class PSHM_EXPORT shm_object
     {
       public:
         using flags_type = pshm::flags_t;

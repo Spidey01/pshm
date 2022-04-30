@@ -10,7 +10,7 @@ namespace pshm
     /**
      * @brief Implements shm_object using the POSIX shared memory API.
      */
-    class posix_shm_object
+    class PSHM_EXPORT posix_shm_object
         : public shm_object
     {
       public:
