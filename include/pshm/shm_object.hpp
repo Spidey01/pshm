@@ -117,11 +117,11 @@ namespace pshm
         string_type make_error(const string_type& msg) const;
 
         /**
-         * @brief Add std::strerror() to the error code.
+         * @brief Add shm_object::strerror() to the error message.
          *
          * @param msg the message to use.
          *
-         * @param error passed to std::sterror()
+         * @param error passed to this->std::sterror().
          */
         string_type make_error(const string_type& msg, int error) const;
 
@@ -132,10 +132,24 @@ namespace pshm
          *
          * @param name the shared memory object name, e.g. mName.
          *
-         * @param error passed to std::sterror()
+         * @param error passed to this->strerror().
          */
         string_type make_error(const string_type& msg, const string_type& name, int error) const;
 
+        /**
+         * @brief Format error code to string.
+         *
+         * Default implementation uses std::strerror() for use with errno codes.
+         * 
+         * Implementations may wish to override this for other uses, such as
+         * interpreting code as a win32 error code instead of an errno.
+         *
+         * @param code the code to format.
+         *
+         * @returns the string for the error message.
+         */
+        virtual string_type strerror(int code) const noexcept;
+        
       private:
         PSHM_DECLARE_ALLOCATION_TRACER();
         string_type mName;

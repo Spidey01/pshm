@@ -57,11 +57,16 @@ namespace pshm
 
     shm_object::string_type shm_object::make_error(const string_type& msg, int error) const
     {
-        return make_error(msg + ": " + std::strerror(error));
+        return make_error(msg + ": " + strerror(error));
     }
 
     shm_object::string_type shm_object::make_error(const string_type& msg, const string_type& name, int error) const
     {
         return make_error(msg + ": " + name, error);
+    }
+
+    shm_object::string_type shm_object::strerror(int error) const noexcept
+    {
+        return std::strerror(error);
     }
 } // namespace pshm
